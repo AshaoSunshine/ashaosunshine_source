@@ -1,0 +1,472 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Kafka(一) - AshaoSunshine&#39;s HomePage</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content=", Kafka,kafka">
+  <meta name="description" content="Apache Kafka 是一个分布式流处理平台。1....">
+  <meta name="author" content="Pang hu">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_r673sha78lq.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: true,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '[object Object]'
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">Kafka(一)</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p><a target="_blank" href="https://beian.miit.gov.cn">津ICP备2021000046号-1</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Kafka(一)</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 01, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7872</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="Apache-Kafka-是一个分布式流处理平台。"><a href="#Apache-Kafka-是一个分布式流处理平台。" class="headerlink" title="Apache Kafka 是一个分布式流处理平台。"></a><strong>Apache Kafka 是一个分布式流处理平台。</strong></h1><h2 id="1-0-介绍"><a href="#1-0-介绍" class="headerlink" title="1.0 介绍"></a>1.0 介绍</h2><p>kafka 作为一个集群，运行在一台或者多台服务器上，它是通过topic对存储的流数据进行分类。每条记录中包含一个key,一个value和一个timestamp(时间戳)。</p>
+<p>Kafka是Apache下的一个子项目，是一个高性能跨语言分布式发布/订阅消息队列系统，而Jafka是在Kafka之上孵化而来的，即Kafka的一个升级版。具有以下特性：快速持久化，可以在O(1)的系统开销下进行消息持久化；高吞吐，在一台普通的服务器上既可以达到10W/s的吞吐速率；完全的分布式系统，Broker、Producer、Consumer都原生自动支持分布式，自动实现负载均衡；支持Hadoop数据并行加载，对于像Hadoop的一样的日志数据和离线分析系统，但又要求实时处理的限制，这是一个可行的解决方案。Kafka通过Hadoop的并行加载机制统一了在线和离线的消息处理。Apache Kafka相对于ActiveMQ是一个非常轻量级的消息系统，除了性能非常好之外，还是一个工作良好的分布式系统。</p>
+<p>kafka有四个核心的API：</p>
+<ul>
+<li>Producer API允许一个应用程序发布一串流式的数据到一个或者多个Kafka topic。</li>
+<li>Consumer API允许一个应用程序订阅一个或者多个topic,并且对发布给他们的流式数据进行处理。</li>
+<li>Streams API允许一个应用程序作为一个流处理器，消费一个或者多个topic产生的输入流，然后产生一个输出流到一个或者多个topic中去，在输入输出流中进行有效的转换。</li>
+<li>Connector API允许构建并运行可重用的生产者或者消费者，将Kafka Topic连接到已经存在的应用程序或者数据系统。<br><img   class="lazyload" data-original="/images/kafka-apis.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></li>
+</ul>
+<h3 id="1-1-相关术语"><a href="#1-1-相关术语" class="headerlink" title="1.1 相关术语"></a>1.1 相关术语</h3><h4 id="1-1-1-broker"><a href="#1-1-1-broker" class="headerlink" title="1.1.1 broker"></a>1.1.1 broker</h4><p>Kafka 集群包含一个或多个服务器，服务器节点称为broker。</p>
+<p>broker存储topic的数据。如果某topic有N个partition，集群有N个broker，那么每个broker存储该topic的一个partition。</p>
+<p>如果某topic有N个partition，集群有(N+M)个broker，那么其中有N个broker存储该topic的一个partition，剩下的M个broker不存储该topic的partition数据。</p>
+<p>如果某topic有N个partition，集群中broker数目少于N个，那么一个broker存储该topic的一个或多个partition。在实际生产环境中，尽量避免这种情况的发生，这种情况容易导致Kafka集群数据不均衡。</p>
+<h4 id="1-1-2-Topic"><a href="#1-1-2-Topic" class="headerlink" title="1.1.2 Topic"></a>1.1.2 Topic</h4><p>每条发布到Kafka集群的消息都有一个类别，这个类别被称为Topic。（物理上不同Topic的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个broker上但用户只需指定消息的Topic即可生产或消费数据而不必关心数据存于何处）</p>
+<p>类似于数据库的表名</p>
+<h4 id="1-1-3-Partition"><a href="#1-1-3-Partition" class="headerlink" title="1.1.3 Partition"></a>1.1.3 Partition</h4><p>topic中的数据分割为一个或多个partition。每个topic至少有一个partition。每个partition中的数据使用多个segment文件存储。partition中的数据是有序的，不同partition间的数据丢失了数据的顺序。如果topic有多个partition，消费数据时就不能保证数据的顺序。在需要严格保证消息的消费顺序的场景下，需要将partition数目设为1。</p>
+<h4 id="1-1-4-Producer"><a href="#1-1-4-Producer" class="headerlink" title="1.1.4 Producer"></a>1.1.4 Producer</h4><p>生产者即数据的发布者，该角色将消息发布到Kafka的topic中。broker接收到生产者发送的消息后，broker将该消息追加到当前用于追加数据的segment文件中。生产者发送的消息，存储到一个partition中，生产者也可以指定数据存储的partition。</p>
+<h4 id="1-1-5-Consumer"><a href="#1-1-5-Consumer" class="headerlink" title="1.1.5 Consumer"></a>1.1.5 Consumer</h4><p>消费者可以从broker中读取数据。消费者可以消费多个topic中的数据。</p>
+<h4 id="1-1-6-Consumer-Group"><a href="#1-1-6-Consumer-Group" class="headerlink" title="1.1.6 Consumer Group"></a>1.1.6 Consumer Group</h4><p>每个Consumer属于一个特定的Consumer Group（可为每个Consumer指定group name，若不指定group name则属于默认的group）。</p>
+<h4 id="1-1-7-Leader"><a href="#1-1-7-Leader" class="headerlink" title="1.1.7 Leader"></a>1.1.7 Leader</h4><p>每个partition有多个副本，其中有且仅有一个作为Leader，Leader是当前负责数据的读写的partition。</p>
+<h4 id="1-1-8-Follower"><a href="#1-1-8-Follower" class="headerlink" title="1.1.8 Follower"></a>1.1.8 Follower</h4><p>Follower跟随Leader，所有写请求都通过Leader路由，数据变更会广播给所有Follower，Follower与Leader保持数据同步。如果Leader失效，则从Follower中选举出一个新的Leader。当Follower与Leader挂掉、卡住或者同步太慢，leader会把这个follower从“in sync replicas”（ISR）列表中删除，重新创建一个Follower。</p>
+<h3 id="1-2-Topics和日志"><a href="#1-2-Topics和日志" class="headerlink" title="1.2 Topics和日志"></a>1.2 Topics和日志</h3><p>Topic 是数据主题，是数据记录发布的地方，可以用来区分业务系统。Kafka中的Topics总是多订阅者模式，一个topic可以拥有一个或者多个消费之来订阅它的数据。</p>
+<p>每一个topic，Kafka集群会维持一个分区日志。</p>
+<p><img   class="lazyload" data-original="/images/log_anatomy.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>每个分区都是有序且顺序不可变的记录集，并且不断地追加到结构化的commit log文件。分区中的每一个记录都会分配一个id来表示顺序，我们称为offset,offset用来唯一的标识分区中的每一条数据。</p>
+<p>kafka的性能和数据大小无关，所以长时间存储数据没什么问题。</p>
+<p>日志中的partition分区有以下几个用途。第一，当日志大小超过了单台服务器的限制，允许日志进行扩展。每个单独的分区都必须受限于主机的文件限制，不过一个主题可以有多个分区，因此可以处理无限量的数据。第二，可以作为并行的单元集。</p>
+<h3 id="1-3-分布式"><a href="#1-3-分布式" class="headerlink" title="1.3 分布式"></a>1.3 分布式</h3><p>日志的分区partition分布在Kafka集群的服务器上。每个服务器在处理数据和请求时，共享这些分区。每一个分区都会在已配置的服务器上进行备份，确保容错性。</p>
+<p>每个分区都有一台server作为“leader”， 0台或者多台server作为follers.leader server处理一切对partition分区的读写请求，而follwers只需被动的同步leader上的数据。当leader宕机了，followers中的一台服务器会自动成为新的leader。每台server都会成为某些分区的leader和某些分区的follower，因此集群的负载是平衡的。</p>
+<h3 id="1-4-生产者"><a href="#1-4-生产者" class="headerlink" title="1.4 生产者"></a>1.4 生产者</h3><p>生产者可以将数据发布到所选择的topic(主题)中。生产者负责记录分配到topic中的某个partition分区中。可以使用循环的方式来简单地实现负载均衡。</p>
+<h3 id="1-5-消费者"><a href="#1-5-消费者" class="headerlink" title="1.5 消费者"></a>1.5 消费者</h3><p>消费者使用一个消费组名称来进行标识，发布到topic中的每条记录被分配给订阅消费组中的消费者实例。消费者实例可以分布在多个进程中或者多个机器上。</p>
+<p>如果所有的消费者实例在同一消费组中，消费记录会负载均衡到每一个消费者实例。</p>
+<p>如果所有的消费者实例在不同的消费组中，每条消息记录会广播到所有的消费者进程。<br><img   class="lazyload" data-original="/images/consumer_groups.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<p>如图，这个Kafka集群有两台server，四个分区和两个消费者组。消费组A有两个消费者，消费组B有四个消费者。</p>
+<p>通常情况下，每个topic都会有一些消费组，一个消费组对应一个“逻辑订阅者”。 一个消费组由许多消费者实例组成，便于扩展和容错。这就是发布和订阅的概念，只不过订阅者是一组消费者而不是单个进程。</p>
+<p>在Kafka中实现消费的方式是将日志中的分区划分到每一个消费者实例上，以便在任何时间，每个实例都是分区唯一的消费者。维护消费者组中的消费关系由Kafka协议动态处理。如果新的实例加入组，他们将从组中其他成员处接管一些partition分区；如果一个实例消失，拥有的分区将被分发至剩余的实例。</p>
+<p>Kafka只保证分区内记录是有序的，不保证主题中不同分区的顺序。</p>
+<h3 id="1-6-Kafka作为存储系统"><a href="#1-6-Kafka作为存储系统" class="headerlink" title="1.6 Kafka作为存储系统"></a>1.6 Kafka作为存储系统</h3><p>数据写入Kafka后被写入到磁盘，并且备份以便容错，直到完全备份，Kafka才让生产者认为完成写入，即使写入失败kafka也会确保继续写入Kafka使用磁盘结构，具有很好的扩展性。</p>
+<p>Kafka是一种高性能、低延迟、具备日志存储、备份和传播功能的分布式文件系统。</p>
+<h3 id="1-7-Kafka用作流处理"><a href="#1-7-Kafka用作流处理" class="headerlink" title="1.7 Kafka用作流处理"></a>1.7 Kafka用作流处理</h3><p>Kafka流处理不仅用来读写和存储流式数据，最终目的是为了能够进行实时的流处理。在Kafka中，流处理不断地从输入的topic获取流数据，处理数据后，在不断生产数据到输出的topic中去。</p>
+<p>简单数据处理可以使用生产者和消费者的API。对于复杂的数据变换，Kafka提供了Streams　API。Stream　API允许应用做一些复杂的处理，比如将流数据聚合或者join。</p>
+<p>这一功能有助于解决以下这种应用程序面临的问题：处理无序数据，当消费端代码变更后重新处理输入，执行有状态计算等。</p>
+<p>Streams API建立在Kafka的核心之上：它使用Producer和Consumer API作为输入，使用Kafka进行有状态的存储，并在流处理实例之间使用相同的消费组机制来实现容错。</p>
+<h3 id="1-8-批处理"><a href="#1-8-批处理" class="headerlink" title="1.8 批处理"></a>1.8 批处理</h3><p>Kafka将消息、存储和流处理结合起来，通过组合存储和低延迟订阅，流式应用程序可以以同样的方式处理过去和未来的数据。</p>
+<p>同样，作为流数据管道，能够订阅实时事件使得Kafka具有非常低的延迟；同时Kafka还具有可靠存储数据的特性，可用来存储重要的支付数据，或者与离线系统进行交互，系统可间歇性加载数据，也可在停机维护后再次加载数据。流处理功能使得数据可以在到达时转换数据。</p>
+<h2 id="2-0-基本教程"><a href="#2-0-基本教程" class="headerlink" title="2.0 基本教程"></a>2.0 基本教程</h2><p>如果是windows平台，使用bin\windows\而不是bin/，并将脚本扩展名改为.bat</p>
+<h3 id="Step-1-下载代码"><a href="#Step-1-下载代码" class="headerlink" title="Step 1: 下载代码"></a>Step 1: 下载代码</h3><p><a target="_blank" rel="noopener" href="https://www.apache.org/dyn/closer.cgi?path=/kafka/1.0.0/kafka_2.11-1.0.0.tgz">下载</a>相关版本并解压缩。</p>
+<p><code>&gt; cd kafka</code></p>
+<h3 id="Step-2-启动服务器"><a href="#Step-2-启动服务器" class="headerlink" title="Step 2: 启动服务器"></a>Step 2: 启动服务器</h3><p>Kafka使用<a target="_blank" rel="noopener" href="https://zookeeper.apache.org/">ZooKeeper</a>,如果你还没有ZooKeeper服务器。</p>
+<p><code>&gt; bin/zookeeper-server-start.sh config/zookeeper.properties</code></p>
+<p><code>[2021-07-2 15:01:37,495] INFO Reading configuration from: config/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)</code></p>
+<p>开始启动Kafka服务器：</p>
+<p><code>&gt; bin/kafka-server-start.sh config/server.properties</code></p>
+<h3 id="Step-3-创建一个topic"><a href="#Step-3-创建一个topic" class="headerlink" title="Step 3: 创建一个topic"></a>Step 3: 创建一个topic</h3><p>创建一个名为”test”的topic，有一个分区和一个副本：</p>
+<p><code>&gt; bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</code></p>
+<p>现在运行list命令来查看这个topic:</p>
+<p><code>&gt; bin/kafka-topics.sh --list --zookeeper localhost:2181</code></p>
+<p><code>test</code></p>
+<h3 id="Step-4-发送消息"><a href="#Step-4-发送消息" class="headerlink" title="Step 4: 发送消息"></a>Step 4: 发送消息</h3><p>Kafka自带一个命令行客户端，它从文件或标准输入中获取输入，将其作为message发送到Kafka集群。默认情况下，每行将作为单独的message发送。</p>
+<p>运行producer,然后在控制台输入一些消息已发送到服务器。</p>
+<p><code>&gt; bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</code></p>
+<p><code>This is a message</code></p>
+<h3 id="Step-5-启动一个consumer"><a href="#Step-5-启动一个consumer" class="headerlink" title="Step 5: 启动一个consumer"></a>Step 5: 启动一个consumer</h3><p>Kafka有一个命令行consumer，将消息转储到标准输出。</p>
+<p> <code>&gt; bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning</code></p>
+<p><code>This is a message</code></p>
+<h3 id="Step-6-设置多个代理集群"><a href="#Step-6-设置多个代理集群" class="headerlink" title="Step 6: 设置多个代理集群"></a>Step 6: 设置多个代理集群</h3><p>首先，为每个代理创建一个配置文件（在windows上使用copy命令来代替）：</p>
+<p><code>&gt; cp config/server.properties config/server-1.properties</code></p>
+<p><code>&gt; cp config/server.properties config/server-2.properties</code></p>
+<h3 id="Step-7-使用Kafka-Connect来导入-导出数据"><a href="#Step-7-使用Kafka-Connect来导入-导出数据" class="headerlink" title="Step 7: 使用Kafka Connect来导入/导出数据"></a>Step 7: 使用Kafka Connect来导入/导出数据</h3><p>Kafka Connect是Kafka的一个工具，它可以将数据导入和导出到Kafka。它是一种可扩展工具，通过运行connectors（连接器）， 使用自定义逻辑来实现与外部系统的交互。 在本文中，我们将看到如何使用简单的connectors来运行Kafka Connect，这些connectors 将文件中的数据导入到Kafka topic中，并从中导出数据到一个文件。</p>
+<p>首先，创建一个测试文件：</p>
+<p><code>&gt; echo -e &quot;foo\nbar&quot; &gt; test.txt</code></p>
+<p>在Windows系统使用：</p>
+<p><code>&gt; echo foo&gt; test.txt</code></p>
+<p><code>&gt; echo bar&gt;&gt; test.txt</code></p>
+<p>接下来，我们将启动两个standalone（独立）运行的连接器，这意味着它们各自运行在一个单独的本地专用 进程上。 我们提供三个配置文件。首先是Kafka Connect的配置文件，包含常用的配置，如Kafka brokers连接方式和数据的序列化格式。 其余的配置文件均指定一个要创建的连接器。这些文件包括连接器的唯一名称，类的实例，以及其他连接器所需的配置。</p>
+<p><code>&gt; bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties</code></p>
+<p>这些包含在Kafka中的示例配置文件使用您之前启动的默认本地群集配置，并创建两个连接器： 第一个是源连接器，用于从输入文件读取行，并将其输入到 Kafka topic。 第二个是接收器连接器，它从Kafka topic中读取消息，并在输出文件中生成一行。</p>
+<p>在启动过程中，你会看到一些日志消息，包括一些连接器正在实例化的指示。 一旦Kafka Connect进程启动，源连接器就开始从 test.txt 读取行并且 将它们生产到主题 connect-test 中，同时接收器连接器也开始从主题 connect-test 中读取消息， 并将它们写入文件 test.sink.txt 中。我们可以通过检查输出文件的内容来验证数据是否已通过整个pipeline进行交付：</p>
+<p><code>&gt; more test.sink.txt</code></p>
+<p><code>foo</code></p>
+<p><code>bar</code></p>
+<p>数据存储在Kafka topic connect-test 中，因此我们也可以运行一个console consumer（控制台消费者）来查看 topic 中的数据（或使用custom consumer（自定义消费者）代码进行处理）：</p>
+<p><code>&gt; bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning</code></p>
+<p><code>&#123;&quot;schema&quot;:&#123;&quot;type&quot;:&quot;string&quot;,&quot;optional&quot;:false&#125;,&quot;payload&quot;:&quot;foo&quot;&#125;</code></p>
+<p><code>&#123;&quot;schema&quot;:&#123;&quot;type&quot;:&quot;string&quot;,&quot;optional&quot;:false&#125;,&quot;payload&quot;:&quot;bar&quot;&#125;</code></p>
+<p><code>...</code></p>
+<p>连接器一直在处理数据，所以我们可以将数据添加到文件中，并看到它在pipeline 中移动：</p>
+<p><code>&gt; echo Another line&gt;&gt; test.txt</code></p>
+<h3 id="Step-8-使用Kafka-Streams来处理数据"><a href="#Step-8-使用Kafka-Streams来处理数据" class="headerlink" title="Step 8: 使用Kafka Streams来处理数据"></a>Step 8: 使用Kafka Streams来处理数据</h3><p>Kafka Streams是用于构建实时关键应用程序和微服务的客户端库，输入与输出数据存储在Kafka集群中。 Kafka Streams把客户端能够轻便地编写部署标准Java和Scala应用程序的优势与Kafka服务器端集群技术相结合，使这些应用程序具有高度伸缩性、弹性、容错性、分布式等特性。</p>
+<h2 id="3-0-使用案例"><a href="#3-0-使用案例" class="headerlink" title="3.0 使用案例"></a>3.0 使用案例</h2><h3 id="3-1-消息"><a href="#3-1-消息" class="headerlink" title="3.1 消息"></a>3.1 消息</h3><p>Kafka很好的替代了传统的message broker（消息代理）。Message brokers可用于各种场合（如将数据生成器与数据处理解耦，缓冲未处理的消息等）。与大多数消息系统相比，Kafka拥有更好的吞吐量、内置分区、具有复制和容错功能，这使他成为一个非常理想的大型消息处理应用。</p>
+<h3 id="3-2-跟踪网站活动"><a href="#3-2-跟踪网站活动" class="headerlink" title="3.2 跟踪网站活动"></a>3.2 跟踪网站活动</h3><p>Kafka的初始用例是将用户活动跟踪管道重建为一组实时发布-订阅源。这意味着网站活动（浏览网页、搜索或其他的用户操作）将被发布到中心topic，其中每个活动类型有一个topic。这些订阅源提供一系列用例，包括实时处理、实时监视、对加载到Hadoop或离线数据仓库系统的数据进行离线处理和报告等。</p>
+<h3 id="3-3-度量"><a href="#3-3-度量" class="headerlink" title="3.3 度量"></a>3.3 度量</h3><p>Kafka通常用于监控数据。这涉及到从分布式应用程序中汇总数据，然后生成可操作的集中数据源。</p>
+<h3 id="3-4-日志聚合"><a href="#3-4-日志聚合" class="headerlink" title="3.4 日志聚合"></a>3.4 日志聚合</h3><p>日志聚合系统通常从服务器收集物理日志文件，并将其置于一个中心系统（可能是文件服务器或HDFS）进行处理。Kafka从这些日志文件中提取信息，并将其抽象为一个更加清晰的消息流。这样可以实现更低的延迟处理且易于支持多个数据源及分布式数据的消耗。</p>
+<h3 id="3-5-流处理"><a href="#3-5-流处理" class="headerlink" title="3.5 流处理"></a>3.5 流处理</h3><p>Kafka用户通过管道来处理数据，有多个阶段： 从Kafka topic中消费原始输入数据，然后聚合，修饰或通过其他方式转化为新的topic， 以供进一步消费或处理。Kafka Streams是一个轻量但功能强大的流处理库。</p>
+<h3 id="3-6-采集日志"><a href="#3-6-采集日志" class="headerlink" title="3.6 采集日志"></a>3.6 采集日志</h3><p><a target="_blank" rel="noopener" href="https://martinfowler.com/eaaDev/EventSourcing.html">Event sourcing</a>是一种应用程序设计风格，按时间来记录状态的更改。 Kafka 可以存储非常多的日志数据，为基于 event sourcing 的应用程序提供强有力的支持。</p>
+<h3 id="3-7-提交日志"><a href="#3-7-提交日志" class="headerlink" title="3.7 提交日志"></a>3.7 提交日志</h3><p>Kafka 可以从外部为分布式系统提供日志提交功能。 日志有助于记录节点和行为间的数据，采用重新同步机制可以从失败节点恢复数据。 Kafka的日志压缩 功能支持这一用法。</p>
+<p><a target="_blank" rel="noopener" href="https://kafka.apache.org/documentation/#gettingStarted">有关Kafka提供的保证、API和功能的更多信息，请查看相关文档。</a></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Pang hu</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/07/01/ApacheKafka/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;01&#x2F;ApacheKafka&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;01&#x2F;ApacheKafka&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/07/04/Kafka-2/"><i class="iconfont iconleft"></i>Kafka(二)</a>
+    <a href="/2021/07/01/a/">a<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Apache-Kafka-%E6%98%AF%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%B5%81%E5%A4%84%E7%90%86%E5%B9%B3%E5%8F%B0%E3%80%82"><span class="toc-text">Apache Kafka 是一个分布式流处理平台。</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-0-%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.0 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD"><span class="toc-text">1.1 相关术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Topics%E5%92%8C%E6%97%A5%E5%BF%97"><span class="toc-text">1.2 Topics和日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">1.3 分布式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E7%94%9F%E4%BA%A7%E8%80%85"><span class="toc-text">1.4 生产者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-text">1.5 消费者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-Kafka%E4%BD%9C%E4%B8%BA%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F"><span class="toc-text">1.6 Kafka作为存储系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-Kafka%E7%94%A8%E4%BD%9C%E6%B5%81%E5%A4%84%E7%90%86"><span class="toc-text">1.7 Kafka用作流处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-text">1.8 批处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-0-%E5%9F%BA%E6%9C%AC%E6%95%99%E7%A8%8B"><span class="toc-text">2.0 基本教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-%E4%B8%8B%E8%BD%BD%E4%BB%A3%E7%A0%81"><span class="toc-text">Step 1: 下载代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Step 2: 启动服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAtopic"><span class="toc-text">Step 3: 创建一个topic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF"><span class="toc-text">Step 4: 发送消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-5-%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAconsumer"><span class="toc-text">Step 5: 启动一个consumer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AA%E4%BB%A3%E7%90%86%E9%9B%86%E7%BE%A4"><span class="toc-text">Step 6: 设置多个代理集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-7-%E4%BD%BF%E7%94%A8Kafka-Connect%E6%9D%A5%E5%AF%BC%E5%85%A5-%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE"><span class="toc-text">Step 7: 使用Kafka Connect来导入&#x2F;导出数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-8-%E4%BD%BF%E7%94%A8Kafka-Streams%E6%9D%A5%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE"><span class="toc-text">Step 8: 使用Kafka Streams来处理数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-0-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B"><span class="toc-text">3.0 使用案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%B6%88%E6%81%AF"><span class="toc-text">3.1 消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%B7%9F%E8%B8%AA%E7%BD%91%E7%AB%99%E6%B4%BB%E5%8A%A8"><span class="toc-text">3.2 跟踪网站活动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%BA%A6%E9%87%8F"><span class="toc-text">3.3 度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%97%A5%E5%BF%97%E8%81%9A%E5%90%88"><span class="toc-text">3.4 日志聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E6%B5%81%E5%A4%84%E7%90%86"><span class="toc-text">3.5 流处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E9%87%87%E9%9B%86%E6%97%A5%E5%BF%97"><span class="toc-text">3.6 采集日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-%E6%8F%90%E4%BA%A4%E6%97%A5%E5%BF%97"><span class="toc-text">3.7 提交日志</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=156794426 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://github.com/AshaoSunshine "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/AshaoSunshine "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="https://mail.163.com/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#4e4e4e'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail "></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p><a target="_blank" href="https://beian.miit.gov.cn">津ICP备2021000046号-1</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+  
+<script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
