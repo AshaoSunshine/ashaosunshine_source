@@ -9,4 +9,16 @@
     "/images/theme/post-image.jpg",
     "/images/theme/post-image.jpg"
   ]
-}]
+},
+{
+  "name": "厦门旅拍",
+  "cover": "/images/xiamen/welcome_dark_1.jpg",
+  "description": "翻开随身携带的记事本，写着许多事都是关于你。",
+  "photos": [
+    "/images/xiamen/welcome_dark_1.jpg",
+    "/images/xiamen/welcome_dark_1.jpg",
+    "/images/xiamen/welcome_dark_1.jpg",
+    "/images/xiamen/welcome_dark_1.jpg",
+    "/images/xiamen/welcome_dark_1.jpg"
+  ]
+  }]
