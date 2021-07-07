@@ -5,3 +5,4 @@ tags: Kafka
 categories: 技术
 keywords: Kafka,kafka
 ---
+# **Apache Kafka 是一个分布式流处理平台。**

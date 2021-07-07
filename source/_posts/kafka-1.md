@@ -18,7 +18,7 @@ kafka有四个核心的API：
 - Consumer API允许一个应用程序订阅一个或者多个topic,并且对发布给他们的流式数据进行处理。
 - Streams API允许一个应用程序作为一个流处理器，消费一个或者多个topic产生的输入流，然后产生一个输出流到一个或者多个topic中去，在输入输出流中进行有效的转换。
 - Connector API允许构建并运行可重用的生产者或者消费者，将Kafka Topic连接到已经存在的应用程序或者数据系统。
-![](/images/kafka-apis.png)
+![](/images/kafka/kafka-apis.png)
 
 ### 1.1 相关术语
 
@@ -67,7 +67,7 @@ Topic 是数据主题，是数据记录发布的地方，可以用来区分业�
 
 每一个topic，Kafka集群会维持一个分区日志。
 
-![](/images/log_anatomy.png)
+![](/images/kafka/log_anatomy.png)
 
 每个分区都是有序且顺序不可变的记录集，并且不断地追加到结构化的commit log文件。分区中的每一个记录都会分配一个id来表示顺序，我们称为offset,offset用来唯一的标识分区中的每一条数据。
 
@@ -92,7 +92,7 @@ kafka的性能和数据大小无关，所以长时间存储数据没什么问题
 如果所有的消费者实例在同一消费组中，消费记录会负载均衡到每一个消费者实例。
 
 如果所有的消费者实例在不同的消费组中，每条消息记录会广播到所有的消费者进程。
-![](/images/consumer_groups.png)
+![](/images/kafka/consumer_groups.png)
 
 如图，这个Kafka集群有两台server，四个分区和两个消费者组。消费组A有两个消费者，消费组B有四个消费者。
 
@@ -129,7 +129,7 @@ Kafka将消息、存储和流处理结合起来，通过组合存储和低延迟
 
 如果是windows平台，使用bin\windows\而不是bin/，并将脚本扩展名改为.bat
 
-### Step 1: 下载代码
+### Step 1: 下载
 
 [下载](https://www.apache.org/dyn/closer.cgi?path=/kafka/1.0.0/kafka_2.11-1.0.0.tgz)相关版本并解压缩。
 

@@ -1,8 +1,8 @@
 ---
-title: xiamen_diary
+title: 厦门日记
 date: 2021-07-01 15:51:20
 tags:
-categories: 随笔
+categories: 日记
 ---
 这是测试一下
 
