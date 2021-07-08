@@ -7,21 +7,21 @@ keywords: Kafka,kafka
 ---
 # **Apache Kafka 是一个分布式流处理平台。**
 
-## Kafka结构
+## 1.0 Kafka结构
 
 Kafka集群包含若干Producer，若干broker（broker数量越多，集群吞吐率越高），若干Consumer Group，以及一个Zookeeper集群。Kafka通过Zookeeper管理集群配置，选举leader，以及在Consumer Group发生变化时进行rebalance。Producer使用push模式将信息发布到broker，Consumer使用pull模式从broker订阅并消费消息。
 
 ![](/images/kafka/kafka_02.png)
 
-## Producer消息
+## 2.0 Producer消息
 
 Producer发送消息到broker时，会根据Partition机制选择将其存储到哪一个Partition。如果Partition机制设置合理，所有消息可以均匀分布到不同的Partition里，这样就视线里负载均衡。如果一个Topic对应一个文件，那这个文件所在的机器I/O就会变成这个Topic的性能瓶颈，但有了Partition后，不同的消息可以并行写入不同broker的不同的Partition里，可以极大地提高吞吐率。
 
-## Topics和Partition
+## 3.0 Topics和Partition
 
 Topic在逻辑上可以被认为是一个queue，每条消费都必须指定他的Topic，可以简单理解为必须指名把这条消息放进哪个queue里。为了使得Kafka的吞吐率可以线性提高，物理上把Topic分成一个或多个Partition在物理上对应一个文件夹，该文件夹下存储这个Partition的所有消息和索引文件。创建一个topic时，同时可以指定分区数目，分区数越多，其吞吐量也越大，但是需要的资源也越多，同时会导致更高的不可用性，kafka在接收到生产者发送的消息之后，会根据均衡策略将消息存储到不同的分区中。（顺序写磁盘效率比随机写内存还要高，这是Kafka高吞吐率的一个很重要的保证）。
 
-## Consumer Group
+## 4.0 Consumer Group
 
 ![](/images/kafka/consumer_groups.png)
 
@@ -30,7 +30,7 @@ Topic在逻辑上可以被认为是一个queue，每条消费都必须指定他�
 这是Kafka用来实现一个Topic消息的广播（发给所有的Consumer）和单播（发给某个Consumer）的手段。一个Topic可以对应多个Consumer Group。如果需要广播，只要每个Consumer有一个独立的Group就可以了。要实现单播只要所有的Comsumer在同一个Group里。用Consumer Group还可以将Consumer进行自由的分组而不是需要多次发送消息到不同的Topic.
 
 
-## push and pull
+## 5.0 push and pull
 
 Kafka作为一个消息系统遵循了传统的方式，选择又Producer向broker push消息并由Consumer从broker pull消息。
 
