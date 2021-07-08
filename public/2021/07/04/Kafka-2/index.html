@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   <meta name="keywords" content=", Kafka,kafka">
-  <meta name="description" content="Apache Kafka 是一个分布式流处理平台。1....">
+  <meta name="description" content="Kafka是一个分布式的基于发布/订阅的消息系统，有着...">
   <meta name="author" content="Pang hu">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -191,7 +191,7 @@
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 04, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1468</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1508</span>
     </div>
   </div>
 </section>
@@ -207,7 +207,6 @@
 <h2 id="5-0-push-and-pull"><a href="#5-0-push-and-pull" class="headerlink" title="5.0 push and pull"></a>5.0 push and pull</h2><p>Kafka作为一个消息系统遵循了传统的方式，选择又Producer向broker push消息并由Consumer从broker pull消息。</p>
 <p>push模式很难适应消费速率不同的消费者，因为消息发送速率是由broker决定的。push模式的目标是尽可能以最快速度传递消息，但是这样很容易造成Consumer来不及处理消息，典型的表现就是拒绝服务以及网络拥塞。而pull模式则可以根据Consumer的消费能力以适当的速率消费消息。</p>
 <p>Kafka更适合pull模式，pull模式可简化broker的设计，Consumer可自主控制消费消息的速率，同时Consumer可以自己控制消费方式——即可批量消费也可逐条消费，同时还能选择不同的提交方式从而实现不同的传输语义。</p>
-
       </section>
       <section class="extra">
         

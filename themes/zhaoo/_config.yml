@@ -115,6 +115,7 @@ color_mode:
 gray:
   enable: false
 
+excerpt_description: true
 # --------------------------------------------------
 # Post Settings
 # --------------------------------------------------

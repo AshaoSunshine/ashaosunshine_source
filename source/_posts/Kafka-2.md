@@ -4,7 +4,12 @@ date: 2021-07-04 20:58:15
 tags: Kafka
 categories: 技术
 keywords: Kafka,kafka
+top: 49
 ---
+
+Kafka是一个分布式的基于发布/订阅的消息系统，有着强大的消息处理能力。
+<!--more-->
+
 # **Apache Kafka 是一个分布式流处理平台。**
 
 ## 1.0 Kafka结构
