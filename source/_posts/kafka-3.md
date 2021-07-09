@@ -8,7 +8,7 @@ top: 48
 image: /images/kafka/kafka_tag_1.jpg
 ---
 
-Kafka是一个分布式的基于发布/订阅的消息系统，有着强大的消息处理能力
+Kafka是一个分布式的基于发布/订阅的消息系统，有着强大的消息处理能力。
 <!--more-->
 
 # **Apache Kafka 是一个分布式流处理平台。**

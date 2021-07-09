@@ -5,6 +5,7 @@ tags: Kafka
 categories: 技术
 keywords: Kafka,kafka
 top: 49
+image: /images/kafka/kafka_tag_1.jpg
 ---
 
 Kafka是一个分布式的基于发布/订阅的消息系统，有着强大的消息处理能力。
