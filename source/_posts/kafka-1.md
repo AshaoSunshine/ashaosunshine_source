@@ -139,31 +139,30 @@ Kafka将消息、存储和流处理结合起来，通过组合存储和低延迟
 
 [下载](https://www.apache.org/dyn/closer.cgi?path=/kafka/1.0.0/kafka_2.11-1.0.0.tgz)相关版本并解压缩。
 
-```> cd kafka```
+> cd kafka  
 
 ### Step 2: 启动服务器
 
 Kafka使用[ZooKeeper](https://zookeeper.apache.org/),如果你还没有ZooKeeper服务器。
 
-```> bin/zookeeper-server-start.sh config/zookeeper.properties```
-
-```[2021-07-2 15:01:37,495] INFO Reading configuration from: config/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)```
+> bin/zookeeper-server-start.sh config/zookeeper.properties  
+> [2021-07-2 15:01:37,495] INFO Reading configuration from: config/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
 
 开始启动Kafka服务器：
 
-```> bin/kafka-server-start.sh config/server.properties```
+> bin/kafka-server-start.sh config/server.properties
 
 ### Step 3: 创建一个topic
 
 创建一个名为"test"的topic，有一个分区和一个副本：
 
-```> bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test```
+> bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 
 现在运行list命令来查看这个topic:
 
-```> bin/kafka-topics.sh --list --zookeeper localhost:2181```
+> bin/kafka-topics.sh --list --zookeeper localhost:2181  
 
-```test```
+> test
 
 ### Step 4: 发送消息
 
@@ -171,25 +170,24 @@ Kafka自带一个命令行客户端，它从文件或标准输入中获取输入
 
 运行producer,然后在控制台输入一些消息已发送到服务器。
 
-```> bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test```
+> bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
 
-```This is a message```
+> This is a message
 
 ### Step 5: 启动一个consumer
 
 Kafka有一个命令行consumer，将消息转储到标准输出。
 
- ```> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning```
+> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
 
-```This is a message```
+> This is a message
 
 ### Step 6: 设置多个代理集群
 
 首先，为每个代理创建一个配置文件（在windows上使用copy命令来代替）：
 
-```> cp config/server.properties config/server-1.properties```
-
-```> cp config/server.properties config/server-2.properties```
+> cp config/server.properties config/server-1.properties  
+> cp config/server.properties config/server-2.properties
 
 ### Step 7: 使用Kafka Connect来导入/导出数据
 
@@ -197,41 +195,39 @@ Kafka Connect是Kafka的一个工具，它可以将数据导入和导出到Kafka
 
 首先，创建一个测试文件：
 
-```> echo -e "foo\nbar" > test.txt```
+> echo -e "foo\nbar" > test.txt
 
 在Windows系统使用：
 
-```> echo foo> test.txt```
-
-```> echo bar>> test.txt```
+> echo foo> test.txt  
+> echo bar>> test.txt
 
 接下来，我们将启动两个standalone（独立）运行的连接器，这意味着它们各自运行在一个单独的本地专用 进程上。 我们提供三个配置文件。首先是Kafka Connect的配置文件，包含常用的配置，如Kafka brokers连接方式和数据的序列化格式。 其余的配置文件均指定一个要创建的连接器。这些文件包括连接器的唯一名称，类的实例，以及其他连接器所需的配置。
 
-```> bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties```
+> bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties
 
 这些包含在Kafka中的示例配置文件使用您之前启动的默认本地群集配置，并创建两个连接器： 第一个是源连接器，用于从输入文件读取行，并将其输入到 Kafka topic。 第二个是接收器连接器，它从Kafka topic中读取消息，并在输出文件中生成一行。
 
 在启动过程中，你会看到一些日志消息，包括一些连接器正在实例化的指示。 一旦Kafka Connect进程启动，源连接器就开始从 test.txt 读取行并且 将它们生产到主题 connect-test 中，同时接收器连接器也开始从主题 connect-test 中读取消息， 并将它们写入文件 test.sink.txt 中。我们可以通过检查输出文件的内容来验证数据是否已通过整个pipeline进行交付：
 
-```> more test.sink.txt```
+> more test.sink.txt
 
-```foo```
+> foo
 
-```bar```
+> bar
 
 数据存储在Kafka topic connect-test 中，因此我们也可以运行一个console consumer（控制台消费者）来查看 topic 中的数据（或使用custom consumer（自定义消费者）代码进行处理）：
 
-```> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning```
+> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning
 
-```{"schema":{"type":"string","optional":false},"payload":"foo"}```
+> {"schema":{"type":"string","optional":false},"payload":"foo"}
 
-```{"schema":{"type":"string","optional":false},"payload":"bar"}```
+> {"schema":{"type":"string","optional":false},"payload":"bar"}
 
-```...```
 
 连接器一直在处理数据，所以我们可以将数据添加到文件中，并看到它在pipeline 中移动：
 
-```> echo Another line>> test.txt```
+> echo Another line>> test.txt
 
 ### Step 8: 使用Kafka Streams来处理数据
 
