@@ -5,5 +5,5 @@ tags: sql
 categories: 技术
 keywords: sqlalchemy
 top: 
-image: /images/kafka/kafka_tag_1.jpg
+image: https://raw.githubusercontent.com/AshaoSunshine/ashaoimg/master/landscape/landscape_1.jpg
 ---
