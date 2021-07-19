@@ -1,6 +1,6 @@
 ---
 title: 故宫，再看还是那么雄伟！
-date: 2021-07-07 10:13:11
+date: 2020-11-01 10:13:11
 tags:
 categories: 日记
 image: /images/gugong/gugong_tag.jpg
