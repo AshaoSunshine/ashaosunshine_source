@@ -1,6 +1,7 @@
 ---
 title: Hello World
 categories: 日记
+date: 2020-06-26 17:13:14
 copyright: false
 image: https://raw.githubusercontent.com/AshaoSunshine/ashaoimg/master/landscape/hello_world.webp
 ---

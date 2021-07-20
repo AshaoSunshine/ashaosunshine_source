@@ -2,7 +2,7 @@
 title: Kafka(一)
 date: 2021-07-01 16:38:09
 tags: Kafka
-categories: 技术
+categories: 消息中间件
 keywords: Kafka,kafka
 top: 50
 image: /images/kafka/kafka_tag_1.jpg
